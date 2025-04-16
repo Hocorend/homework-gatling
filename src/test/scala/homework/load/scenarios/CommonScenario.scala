@@ -1,7 +1,7 @@
 package homework.load.scenarios
 
 import homework.load.Feeders
-import homework.load.cases.{GetMainPage, PostLogin}
+import homework.load.cases.{GetFindFlights, GetMainPage, PostLogin, PostReservationFlights}
 import io.gatling.core.Predef._
 import io.gatling.core.structure._
 
@@ -11,17 +11,25 @@ object CommonScenario {
 
 class CommonScenario {
 
-  val loginGroup: ChainBuilder = group("my login"){
+  val loginGroup: ChainBuilder = group("login") {
     exec(GetMainPage.getMainPage)
+      .exec(GetMainPage.getUserSession)
       .exec(PostLogin.postLogin)
+  }
+
+  val findFlights: ChainBuilder = group("find flights") {
+    exec(GetFindFlights.getFindFlights)
+  }
+
+  val reservationFlights: ChainBuilder = group("reservation flights") {
+    exec(PostReservationFlights.postSelectCities)
+      .exec(PostReservationFlights.postSelectDepartureTime)
+      .exec(PostReservationFlights.postPaymentFlights)
   }
 
   val scn: ScenarioBuilder = scenario("Login")
     .feed(Feeders.users)
     .exec(loginGroup)
-    .exec { session =>
-      // Вывели в консоль всю сессию
-      println(session)
-      session
-    }
+    .exec(findFlights)
+    .exec(reservationFlights)
 }

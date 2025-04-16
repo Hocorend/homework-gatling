@@ -5,6 +5,8 @@ import homework.load.cases.{GetFindFlights, GetMainPage, PostLogin, PostReservat
 import io.gatling.core.Predef._
 import io.gatling.core.structure._
 
+import scala.concurrent.duration.DurationInt
+
 object CommonScenario {
   def apply(): ScenarioBuilder = new CommonScenario().scn
 }
@@ -27,7 +29,7 @@ class CommonScenario {
       .exec(PostReservationFlights.postPaymentFlights)
   }
 
-  val scn: ScenarioBuilder = scenario("Login")
+  val scn: ScenarioBuilder = scenario("webtours.load-test.ru")
     .feed(Feeders.users)
     .exec(loginGroup)
     .exec(findFlights)

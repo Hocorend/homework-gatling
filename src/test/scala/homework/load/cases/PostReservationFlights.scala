@@ -8,7 +8,6 @@ object PostReservationFlights {
 
   val postSelectCities: HttpRequestBuilder = http("POST /cgi-bin/reservations.pl SelectCities")
     .post("/cgi-bin/reservations.pl")
-    .header("Cookie", "#{MSO}")
     .formParam("advanceDiscount", "0")
     .formParam("depart", "#{cities.random()}")
     .formParam("departDate", "06/16/2025")
@@ -28,7 +27,6 @@ object PostReservationFlights {
 
   val postSelectDepartureTime: HttpRequestBuilder = http("POST /cgi-bin/reservations.pl SelectDepartureTime")
     .post("/cgi-bin/reservations.pl")
-    .header("Cookie", "#{MSO}")
     .formParam("outboundFlight", "#{outboundFlights.random()}")
     .formParam("numPassengers", "1")
     .formParam("advanceDiscount", "0")
@@ -37,14 +35,12 @@ object PostReservationFlights {
     .formParam("reserveFlights.x", "69")
     .formParam("reserveFlights.y", "9")
     .check(status is 200)
-    .check(bodyString.saveAs("responseBody"))
     .check(
       regex("""name="outboundFlight" value="(.*?)"""").saveAs("outboundFlight")
     )
 
   val postPaymentFlights: HttpRequestBuilder = http("POST /cgi-bin/reservations.pl PaymentFlights")
     .post("/cgi-bin/reservations.pl")
-    .header("Cookie", "#{MSO}")
     .formParam("firstName", "")
     .formParam("lastName", "")
     .formParam("address1", "")

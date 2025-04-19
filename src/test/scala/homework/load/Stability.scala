@@ -3,7 +3,7 @@ package homework.load
 import homework.load.load.httpProtocol
 import homework.load.scenarios.CommonScenario
 import io.gatling.core.Predef._
-import ru.tinkoff.gatling.config.SimulationConfig._
+import org.galaxio.gatling.config.SimulationConfig._
 
 class Stability extends Simulation {
 

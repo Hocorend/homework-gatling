@@ -3,9 +3,7 @@ package homework.load
 import homework.load.load.httpProtocol
 import homework.load.scenarios.CommonScenario
 import io.gatling.core.Predef._
-import ru.tinkoff.gatling.config.SimulationConfig.{intensity, rampDuration, stageDuration, stagesNumber, testDuration}
-
-import scala.concurrent.duration.DurationInt
+import org.galaxio.gatling.config.SimulationConfig._
 
 class MaxPerformance extends Simulation {
 

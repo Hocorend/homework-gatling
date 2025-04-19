@@ -3,7 +3,7 @@ package homework.load
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import io.gatling.http.protocol.HttpProtocolBuilder
-import ru.tinkoff.gatling.config.SimulationConfig._
+import org.galaxio.gatling.config.SimulationConfig._
 
 package object load {
 
